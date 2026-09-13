@@ -7,6 +7,7 @@
 ![Ollama](https://img.shields.io/badge/Ollama-qwen2.5:3b-green.svg)
 ![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+<img width="1910" height="974" alt="image" src="https://github.com/user-attachments/assets/a4d78be7-b69d-450f-a240-7c49b2869ce4" />
 
 ---
 
@@ -65,4 +66,5 @@
    ▼
 [人工审核面板 (Human-in-the-loop)] ──(通过)──> [发布至 Amazon/TikTok]
                                       └─(驳回)──> [重新生成]
-<img width="1910" height="974" alt="image" src="https://github.com/user-attachments/assets/831285f5-47b5-44a2-80d9-f00b731f374f" />
+
+
