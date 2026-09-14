@@ -114,11 +114,12 @@ def run_agent_stream(user_input):
         "stream": True # 开启流式输出
     }
     
-      try:
-        # 发送流式请求给本地 Ollama，增加更短的超时时间
+    try:
+        # 发送流式请求给本地 Ollama，设置超时时间为 10 秒
         res = requests.post("http://localhost:11434/api/generate", json=payload, stream=True, timeout=10)
         res.raise_for_status()
         
+        # 逐行解析 Ollama 返回的 JSON 数据
         for line in res.iter_lines():
             if line:
                 chunk = json.loads(line.decode('utf-8'))
@@ -126,7 +127,7 @@ def run_agent_stream(user_input):
                     yield chunk['response']
                     
     except Exception as e:
-        # 🚨 连不上 Ollama 时，自动降级为云端模拟模式，不再报错！
+        # 🚨 连不上本地 Ollama 时，自动降级为模拟模式，不再抛出难看的报错
         mock_text = f"【演示模式】检测到本地 Ollama 未启动或不在本地环境。\n\n基于您的需求“{user_input}”，结合 FDA 合规知识库，为您生成以下草稿：\n\n1. 痛点引入（前3秒）：你是否经常感到疲惫？\n2. 产品引入：这款大健康补充剂富含天然成分...\n3. Call to Action：点击下方链接购买！\n\n*注：请在本地启动 Ollama 以体验真实 Qwen2.5 模型生成。*"
         for char in mock_text:
             yield char
